@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block body %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Bipin&Gobinda</h1>
+              <span class="subheading">Manage your Poasts and change them</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+     WELCOME TO OUR BLOG SITE : 
+     <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <h1> Basic Actions:</h1>
+          <button class="btn btn-primary"><a href="/edit/0"> Add a new post</a></button>
+          <button class="btn btn-primary"><a href="/logout"> Log out</a></button>
+          <hr>
+       <h2>Upload a File</h2>
+       <form action="/uploader" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">any file</label>
+    <input type="file" name="file" id="file" class = "form-control">
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<hr>
+
+       </div>
+       <hr>
+       <h2>Edits Posts</h2> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sno</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <td>{{post.sno}}</td>
+        <td>{{post.title}}</td>
+        <td>{{post.date}}</td>
+        <td><a href="/edit/{{post.sno}}"><button class="btn btn-primary">Edit</button></a></td>
+        <td><a href="/delete/{{post.sno}}"><button class="btn btn-primary">Delete</button></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+    {% endblock %}
